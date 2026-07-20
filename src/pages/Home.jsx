@@ -48,6 +48,45 @@ export default function Home({ navigateTo }) {
                 <span className="block text-teal-700">RN, BSN</span>
               </h1>
 
+              {/* Mobile Profile Image — after RN, BSN, before text */}
+              <div className="relative mt-8 flex flex-col items-center justify-center px-2 py-10 lg:hidden">
+                <div className="relative flex justify-center">
+                  <div className="absolute h-[320px] w-[320px] rounded-full bg-teal-100"></div>
+
+                  <div className="relative z-10 h-[325px] w-[320px] overflow-hidden rounded-full border-4 border-white shadow-2xl animate-profile-entry">
+                    <img
+                      src="images/profile-image.jpeg"
+                      alt="Fatima Gibba"
+                      className="h-full w-full object-cover object-[center_20%] animate-profile-shake"
+                    />
+                  </div>
+
+                  <div className="absolute -left-4 top-10 z-20 max-w-[150px] rounded-2xl bg-white p-3 shadow-xl">
+                    <div className="flex items-center gap-2.5">
+                      <div className="rounded-full bg-teal-100 p-2">
+                        <i className="ri-award-line text-lg text-teal-700 animate-pulse"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-semibold text-slate-900">Registered Nurse</h4>
+                        <p className="text-[10px] text-slate-500">RN License</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="absolute -bottom-6 right-0 z-20 max-w-[165px] rounded-2xl bg-white p-3 shadow-xl">
+                    <div className="flex items-center gap-2.5">
+                      <div className="rounded-full bg-cyan-100 p-2">
+                        <i className="ri-hospital-line text-lg text-teal-700"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-semibold text-slate-900">Clinical Training</h4>
+                        <p className="text-[10px] leading-tight text-slate-500">Psychiatric • Emergency • Community</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <p className="mt-8 max-w-xl text-lg leading-9 text-slate-600">
                 Compassionate Registered Nurse delivering exceptional patient care through empathy, professionalism and
                 evidence-based nursing practice. Passionate about improving patient outcomes while creating a safe and
@@ -86,42 +125,44 @@ export default function Home({ navigateTo }) {
               </div>
             </div>
 
-            {/* RIGHT */}
-            <div className="relative flex justify-center">
-              {/* Background Shape */}
-              <div className="absolute h-[500px] w-[500px] rounded-full bg-teal-100"></div>
+            {/* RIGHT — desktop only */}
+            <div className="relative hidden flex-col items-center justify-center lg:flex">
+              <div className="relative flex justify-center">
+                {/* Background Shape */}
+                <div className="absolute h-[500px] w-[500px] rounded-full bg-teal-100"></div>
 
-              {/* Main Image */}
-              <div className="relative z-10 w-[300px] h-[305px] sm:w-[380px] sm:h-[385px] md:w-[430px] md:h-[435px] rounded-full overflow-hidden shadow-2xl border-4 border-white animate-profile-entry">
-                <img
-                  src="images/profile-image.jpeg"
-                  alt="Fatima Gibba"
-                  className="w-full h-full object-cover animate-profile-shake"
-                />
-              </div>
+                {/* Main Image */}
+                <div className="relative z-10 h-[385px] w-[380px] overflow-hidden rounded-full border-4 border-white shadow-2xl animate-profile-entry md:h-[435px] md:w-[430px]">
+                  <img
+                    src="images/profile-image.jpeg"
+                    alt="Fatima Gibba"
+                    className="h-full w-full object-cover object-top animate-profile-shake"
+                  />
+                </div>
 
-              {/* Floating Card */}
-              <div className="absolute -left-5 top-12 z-20 rounded-2xl bg-white p-5 shadow-xl">
-                <div className="flex items-center gap-4">
-                  <div className="rounded-full bg-teal-100 p-3">
-                    <i className="ri-award-line text-2xl text-teal-700 animate-pulse"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-slate-900">Registered Nurse</h4>
-                    <p className="text-sm text-slate-500">RN License</p>
+                {/* Floating Card */}
+                <div className="absolute -left-5 top-12 z-20 rounded-2xl bg-white p-5 shadow-xl">
+                  <div className="flex items-center gap-4">
+                    <div className="rounded-full bg-teal-100 p-3">
+                      <i className="ri-award-line text-2xl text-teal-700 animate-pulse"></i>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-slate-900">Registered Nurse</h4>
+                      <p className="text-sm text-slate-500">RN License</p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Floating Card */}
-              <div className="absolute -bottom-6 right-0 z-20 rounded-2xl bg-white p-5 shadow-xl">
-                <div className="flex items-center gap-4">
-                  <div className="rounded-full bg-cyan-100 p-3">
-                    <i className="ri-hospital-line text-2xl text-teal-700"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-slate-900">Clinical Training</h4>
-                    <p className="text-sm text-slate-500">Psychiatric • Emergency • Community</p>
+                {/* Floating Card */}
+                <div className="absolute -bottom-6 right-0 z-20 rounded-2xl bg-white p-5 shadow-xl">
+                  <div className="flex items-center gap-4">
+                    <div className="rounded-full bg-cyan-100 p-3">
+                      <i className="ri-hospital-line text-2xl text-teal-700"></i>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-slate-900">Clinical Training</h4>
+                      <p className="text-sm text-slate-500">Psychiatric • Emergency • Community</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -135,25 +176,40 @@ export default function Home({ navigateTo }) {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             {/* LEFT IMAGE */}
-            <div className="relative flex justify-center">
-              <div className="absolute -left-10 top-10 h-72 w-72 rounded-full bg-teal-100 blur-3xl opacity-60"></div>
-              <div className="relative z-10 w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] md:w-[420px] md:h-[420px] rounded-[50px] overflow-hidden shadow-2xl border-4 border-white scroll-animate-img">
-                <img
-                  src="images/home-image.jpeg"
-                  alt="Fatima Gibba nursing"
-                  className="w-full h-full object-cover object-top"
-                />
+            <div className="relative flex flex-col items-center justify-center">
+              <div className="relative flex justify-center">
+                <div className="absolute -left-10 top-10 h-72 w-72 rounded-full bg-teal-100 blur-3xl opacity-60"></div>
+                <div className="relative z-10 w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] md:w-[420px] md:h-[420px] rounded-[50px] overflow-hidden shadow-2xl border-4 border-white scroll-animate-img">
+                  <img
+                    src="images/home-image.jpeg"
+                    alt="Fatima Gibba nursing"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+
+                {/* Experience Card (Desktop/Tablet) */}
+                <div className="hidden sm:block absolute -bottom-8 -right-5 z-20 rounded-2xl bg-white p-6 shadow-xl">
+                  <div className="flex items-center gap-4">
+                    <div className="rounded-full bg-teal-100 p-4">
+                      <i className="ri-user-heart-line text-3xl text-teal-700"></i>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-slate-900">Patient First</h4>
+                      <p className="text-sm text-slate-500">Compassionate Care</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* Experience Card */}
-              <div className="absolute -bottom-8 right-5 z-20 rounded-2xl bg-white p-6 shadow-xl">
+              {/* Experience Card (Mobile) */}
+              <div className="mt-8 flex sm:hidden w-full max-w-[300px] z-20 rounded-2xl bg-white p-4 shadow-lg border border-slate-100">
                 <div className="flex items-center gap-4">
-                  <div className="rounded-full bg-teal-100 p-4">
-                    <i className="ri-user-heart-line text-3xl text-teal-700"></i>
+                  <div className="rounded-full bg-teal-100 p-2.5">
+                    <i className="ri-user-heart-line text-xl text-teal-700"></i>
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-slate-900">Patient First</h4>
-                    <p className="text-sm text-slate-500">Compassionate Care</p>
+                    <h4 className="font-semibold text-sm text-slate-900">Patient First</h4>
+                    <p className="text-xs text-slate-500">Compassionate Care</p>
                   </div>
                 </div>
               </div>
