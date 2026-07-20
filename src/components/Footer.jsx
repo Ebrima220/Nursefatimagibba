@@ -23,12 +23,12 @@ export default function Footer({ navigateTo }) {
               <li className="flex items-center gap-2">
                 <i className="ri-mail-line text-teal-400"></i>
                 <a href="mailto:fatimagibba@email.com" className="hover:text-teal-300 transition">
-                  fatimagibba@email.com
+                  fatimagibba432@email.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <i className="ri-phone-line text-teal-400"></i>
-                <span>+220 531 6066</span>
+                <span>+220 531 6067</span>
               </li>
               <li className="flex items-center gap-2">
                 <i className="ri-map-pin-line text-teal-400"></i>

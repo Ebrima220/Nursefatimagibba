@@ -3,16 +3,17 @@ import React, { useState } from 'react'
 export default function Gallery() {
   const [lightbox, setLightbox] = useState(null) // null or { src, alt }
 
-  const outreachImages = [
-    { src: 'images/community-outreach.png', alt: 'Community Outreach Photo 1' },
-    ...Array.from({ length: 11 }, (_, i) => ({ src: '', alt: `Outreach Spot ${i + 2}` })),
-  ]
+  const outreachImages = Array.from({ length: 9 }, (_, i) => ({
+    src: `images/community-image-${i + 1}.jpeg`,
+    alt: `Community Outreach - Activity ${i + 1}`,
+    tag: 'Community Outreach'
+  }))
 
-  const clinicalImages = [
-    { src: 'images/psychiatric-nursing.png', alt: 'Clinical Ward Session' },
-    { src: 'images/emergency-nursing.png', alt: 'Emergency Simulation Lab' },
-    ...Array.from({ length: 10 }, (_, i) => ({ src: '', alt: `Clinical Spot ${i + 3}` })),
-  ]
+  const clinicalImages = Array.from({ length: 9 }, (_, i) => ({
+    src: `images/ward-and-school-image-${i + 1}.jpeg`,
+    alt: `Clinical Practice & School Milestone ${i + 1}`,
+    tag: 'Ward & School Days'
+  }))
 
   const openLightbox = (src, alt) => {
     if (src) {
@@ -25,31 +26,31 @@ export default function Gallery() {
   }
 
   return (
-    <div className="bg-white">
+    <div className="bg-slate-50/50">
       {/* ================= HERO ================= */}
-      <section className="relative overflow-hidden bg-slate-50 py-16">
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 h-80 w-80 rounded-full bg-teal-50 blur-3xl opacity-60"></div>
+      <section className="relative overflow-hidden bg-white border-b border-slate-100 py-20">
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-teal-50/80 blur-3xl opacity-60"></div>
         <div className="relative mx-auto max-w-7xl px-6 text-center">
-          <span className="inline-flex items-center rounded-full bg-teal-100 px-5 py-2 text-sm font-medium text-teal-700">
-            <i className="ri-gallery-line mr-2"></i> Clinical & Outreach Portfolio
+          <span className="inline-flex items-center rounded-full bg-teal-50 px-4 py-1.5 text-xs font-semibold tracking-wider text-teal-700 uppercase mb-4 border border-teal-100/50">
+            <i className="ri-gallery-line mr-1.5"></i> Clinical & Outreach Portfolio
           </span>
-          <h1 className="mt-6 text-4xl font-bold leading-tight text-slate-900 lg:text-6xl">
+          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
             Fatima's Nursing <span className="text-teal-700">Gallery</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-            Explore visual highlights of clinical assignments, community outreach events, ward sessions, and student life.
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-500">
+            Visual highlights of clinical assignments, community outreach events, hospital ward sessions, and academic life.
           </p>
         </div>
       </section>
 
       {/* ================= GALLERY SECTIONS ================= */}
-      <section className="bg-white py-16">
+      <section className="py-20">
         <div className="mx-auto max-w-7xl px-6">
           {/* ================= PORTION 1: COMMUNITY OUTREACH ================= */}
           <div className="mb-24">
-            <div className="border-b border-slate-100 pb-4 mb-8">
-              <h2 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
-                <i className="ri-user-shared-line text-teal-700"></i>
+            <div className="border-b border-slate-200/60 pb-5 mb-10">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 flex items-center gap-3">
+                <span className="h-8 w-1.5 rounded-full bg-teal-600"></span>
                 Community Outreach
               </h2>
               <p className="mt-2 text-slate-500">
@@ -57,90 +58,75 @@ export default function Gallery() {
               </p>
             </div>
 
-            {/* 4 per row grid */}
-            <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {outreachImages.map((img, idx) => {
-                if (img.src) {
-                  return (
-                    <div
-                      key={idx}
-                      onClick={() => openLightbox(img.src, img.alt)}
-                      className="gallery-item group overflow-hidden rounded-2xl aspect-square bg-slate-50 border border-slate-200 relative cursor-pointer"
-                    >
-                      <img
-                        src={img.src}
-                        alt={img.alt}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <i className="ri-zoom-in-line text-white text-3xl opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition duration-300"></i>
-                      </div>
+            {/* 3 columns design */}
+            <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+              {outreachImages.map((img, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => openLightbox(img.src, img.alt)}
+                  className="group relative overflow-hidden rounded-2xl aspect-square bg-slate-100 border border-slate-200/50 shadow-sm hover:shadow-xl transition-all duration-350 cursor-pointer"
+                >
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  {/* Premium overlay with subtle gradients */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-teal-950/90 via-slate-950/45 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <span className="text-teal-400 text-xs font-semibold uppercase tracking-wider mb-1 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-350 delay-75">
+                      {img.tag}
+                    </span>
+                    <h3 className="text-white font-bold text-base leading-snug transform translate-y-3 group-hover:translate-y-0 transition-transform duration-350 delay-100">
+                      {img.alt}
+                    </h3>
+                    <div className="absolute top-4 right-4 h-9 w-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transform -translate-y-2 group-hover:translate-y-0 transition-all duration-350 delay-75">
+                      <i className="ri-zoom-in-line text-base"></i>
                     </div>
-                  )
-                } else {
-                  return (
-                    <div
-                      key={idx}
-                      className="gallery-item group overflow-hidden rounded-2xl aspect-square bg-slate-50 border border-slate-200 border-dashed relative cursor-default flex items-center justify-center hover:bg-slate-100 hover:border-teal-500 transition duration-300"
-                    >
-                      <div className="placeholder-overlay text-center text-slate-400 group-hover:text-teal-700 transition">
-                        <i className="ri-image-add-line text-3xl block mb-2"></i>
-                        <span className="text-xs font-semibold">{img.alt}</span>
-                      </div>
-                    </div>
-                  )
-                }
-              })}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* ================= PORTION 2: CLINICAL PRACTICE & SCHOOL DAYS ================= */}
           <div>
-            <div className="border-b border-slate-100 pb-4 mb-8">
-              <h2 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
-                <i className="ri-hospital-line text-teal-700"></i>
+            <div className="border-b border-slate-200/60 pb-5 mb-10">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 flex items-center gap-3">
+                <span className="h-8 w-1.5 rounded-full bg-emerald-600"></span>
                 Clinical Practice & School Days
               </h2>
               <p className="mt-2 text-slate-500">
-                Milestone sessions in hospital wards, high-fidelity nursing emergency simulation labs, and university
-                school days.
+                Milestone sessions in hospital wards, high-fidelity nursing emergency simulation labs, and university school days.
               </p>
             </div>
 
-            {/* 4 per row grid */}
-            <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {clinicalImages.map((img, idx) => {
-                if (img.src) {
-                  return (
-                    <div
-                      key={idx}
-                      onClick={() => openLightbox(img.src, img.alt)}
-                      className="gallery-item group overflow-hidden rounded-2xl aspect-square bg-slate-50 border border-slate-200 relative cursor-pointer"
-                    >
-                      <img
-                        src={img.src}
-                        alt={img.alt}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <i className="ri-zoom-in-line text-white text-3xl opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition duration-300"></i>
-                      </div>
+            {/* 3 columns design */}
+            <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+              {clinicalImages.map((img, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => openLightbox(img.src, img.alt)}
+                  className="group relative overflow-hidden rounded-2xl aspect-square bg-slate-100 border border-slate-200/50 shadow-sm hover:shadow-xl transition-all duration-350 cursor-pointer"
+                >
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  {/* Premium overlay with subtle gradients */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-slate-950/45 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <span className="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-1 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-350 delay-75">
+                      {img.tag}
+                    </span>
+                    <h3 className="text-white font-bold text-base leading-snug transform translate-y-3 group-hover:translate-y-0 transition-transform duration-350 delay-100">
+                      {img.alt}
+                    </h3>
+                    <div className="absolute top-4 right-4 h-9 w-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transform -translate-y-2 group-hover:translate-y-0 transition-all duration-350 delay-75">
+                      <i className="ri-zoom-in-line text-base"></i>
                     </div>
-                  )
-                } else {
-                  return (
-                    <div
-                      key={idx}
-                      className="gallery-item group overflow-hidden rounded-2xl aspect-square bg-slate-50 border border-slate-200 border-dashed relative cursor-default flex items-center justify-center hover:bg-slate-100 hover:border-teal-500 transition duration-300"
-                    >
-                      <div className="placeholder-overlay text-center text-slate-400 group-hover:text-teal-700 transition">
-                        <i className="ri-image-add-line text-3xl block mb-2"></i>
-                        <span className="text-xs font-semibold">{img.alt}</span>
-                      </div>
-                    </div>
-                  )
-                }
-              })}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
