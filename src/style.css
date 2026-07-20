@@ -93,3 +93,18 @@ body {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+
+/* Gallery hero background — Ken Burns zoom, full image visible */
+.gallery-hero-bg {
+  transform-origin: center center;
+  animation: gallery-hero-zoom 7s ease-in-out infinite alternate;
+}
+
+@keyframes gallery-hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.10);
+  }
+}
