@@ -176,25 +176,26 @@ export default function Home({ navigateTo }) {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             {/* LEFT IMAGE */}
-            <div className="relative flex flex-col items-center justify-center">
-              <div className="relative flex justify-center overflow-visible">
-                <div className="absolute -left-10 top-10 h-72 w-72 rounded-full bg-teal-100 blur-3xl opacity-60"></div>
-                <div className="relative z-10 w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] md:w-[420px] md:h-[420px] rounded-[50px] overflow-hidden shadow-2xl border-4 border-white scroll-animate-img">
+            <div className="relative flex flex-col items-center justify-center overflow-visible">
+              <div className="relative w-[min(300px,calc(100vw-3rem))] sm:w-[380px] md:w-[420px]">
+                <div className="pointer-events-none absolute -left-10 top-10 h-72 w-72 rounded-full bg-teal-100 blur-3xl opacity-60"></div>
+
+                <div className="relative z-10 aspect-square w-full overflow-hidden rounded-[50px] shadow-2xl border-4 border-white scroll-animate-img">
                   <img
                     src="/images/home-image.jpeg"
                     alt="Fatima Gibba nursing"
-                    className="w-full h-full object-cover object-top"
+                    className="h-full w-full object-cover object-top"
                   />
                 </div>
 
-                <div className="absolute bottom-0 -right-2 sm:-right-5 z-20 rounded-2xl bg-white p-4 sm:p-6 shadow-xl">
+                <div className="absolute bottom-0 left-1/2 z-20 w-[calc(100%-1.5rem)] max-w-[240px] -translate-x-1/2 rounded-2xl bg-white p-3 shadow-xl sm:left-auto sm:right-0 sm:w-auto sm:max-w-none sm:translate-x-0 sm:p-6 sm:-right-5">
                   <div className="flex items-center gap-3 sm:gap-4">
-                    <div className="rounded-full bg-teal-100 p-2.5 sm:p-4">
+                    <div className="shrink-0 rounded-full bg-teal-100 p-2.5 sm:p-4">
                       <i className="ri-user-heart-line text-xl sm:text-3xl text-teal-700"></i>
                     </div>
-                    <div>
-                      <h4 className="text-sm sm:text-xl font-bold text-slate-900">Patient First</h4>
-                      <p className="text-xs sm:text-sm text-slate-500">Compassionate Care</p>
+                    <div className="min-w-0">
+                      <h4 className="text-sm font-bold text-slate-900 sm:text-xl">Patient First</h4>
+                      <p className="text-xs text-slate-500 sm:text-sm">Compassionate Care</p>
                     </div>
                   </div>
                 </div>
