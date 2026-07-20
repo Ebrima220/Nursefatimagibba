@@ -3,9 +3,12 @@ import Header from './components/Header.jsx'
 import Home from './pages/Home.jsx'
 import Gallery from './pages/Gallery.jsx'
 import Footer from './components/Footer.jsx'
+import { usePageSEO } from './hooks/usePageSEO.js'
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home')
+
+  usePageSEO(currentPage)
 
   // Smooth scroll transitions when switching pages
   const navigateTo = (page, sectionId) => {

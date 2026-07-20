@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
-/* Lock the entire layout in the middle across all devices */
+/* Full-width layout with small side margins */
 html {
   background-color: #f1f5f9; /* bg-slate-100 */
   min-height: 100%;
 }
 
 body {
-  max-width: 1280px; /* max-w-7xl equivalent */
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
   min-height: 100vh;
   background-color: #ffffff;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
-  border-left: 1px solid rgba(226, 232, 240, 0.8);
-  border-right: 1px solid rgba(226, 232, 240, 0.8);
   position: relative;
+  box-sizing: border-box;
 }
 
 /* Hero Profile Image Animations */
