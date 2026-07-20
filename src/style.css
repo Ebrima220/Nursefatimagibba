@@ -8,14 +8,28 @@ html {
 
 body {
   width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
   min-height: 100vh;
   background-color: #ffffff;
   position: relative;
   box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  body {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
 }
 
 /* Hero Profile Image Animations */

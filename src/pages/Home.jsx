@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { SITE } from '../config/site.js'
 
 export default function Home({ navigateTo }) {
   useEffect(() => {
@@ -95,7 +96,8 @@ export default function Home({ navigateTo }) {
 
               <div className="mt-12 flex flex-wrap gap-5">
                 <a
-                  href="#"
+                  href={SITE.cv}
+                  download={SITE.cvFileName}
                   className="rounded-full bg-teal-700 px-8 py-4 font-medium text-white transition hover:bg-teal-800"
                 >
                   Download Resume
@@ -173,12 +175,12 @@ export default function Home({ navigateTo }) {
 
       {/* ================= ABOUT ================= */}
       <section id="about" className="bg-white py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="mx-auto max-w-6xl px-6 lg:px-12">
+          <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-x-20">
             {/* LEFT IMAGE */}
-            <div className="relative flex flex-col items-center justify-center overflow-visible">
-              <div className="relative w-[min(300px,calc(100vw-3rem))] sm:w-[380px] md:w-[420px]">
-                <div className="pointer-events-none absolute -left-10 top-10 h-72 w-72 rounded-full bg-teal-100 blur-3xl opacity-60"></div>
+            <div className="relative flex flex-col items-center justify-center overflow-visible lg:justify-self-center">
+              <div className="relative w-[min(300px,calc(100vw-3rem))] sm:w-[380px] md:w-[420px] lg:w-[480px]">
+                <div className="pointer-events-none absolute -left-10 top-10 h-72 w-72 rounded-full bg-teal-100 blur-3xl opacity-60 lg:h-80 lg:w-80"></div>
 
                 <div className="relative z-10 aspect-square w-full overflow-hidden rounded-[50px] shadow-2xl border-4 border-white scroll-animate-img">
                   <img
@@ -203,7 +205,7 @@ export default function Home({ navigateTo }) {
             </div>
 
             {/* RIGHT CONTENT */}
-            <div>
+            <div className="lg:justify-self-center">
               <span className="inline-flex rounded-full bg-teal-100 px-5 py-2 text-sm font-medium text-teal-700">
                 About Me
               </span>

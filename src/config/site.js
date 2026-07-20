@@ -15,6 +15,8 @@ export const SITE = {
   phone: '+2205316067',
   location: 'Banjullinding, The Gambia',
   image: '/images/profile-image.jpeg',
+  cv: '/cv/fatima-gibba-cv.pdf',
+  cvFileName: 'Fatima-Gibba-CV.pdf',
   instagram: 'https://www.instagram.com/pha__gibba',
   whatsapp: 'https://wa.me/2206734922',
   /** Set via VITE_SITE_URL once your domain is live, e.g. https://fatimagibba.com */
