@@ -1,7 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export default function Gallery() {
   const [lightbox, setLightbox] = useState(null) // null or { src, alt }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view')
+          } else {
+            entry.target.classList.remove('in-view')
+          }
+        })
+      },
+      {
+        threshold: 0.05,
+        rootMargin: '0px 0px -50px 0px',
+      }
+    )
+
+    const animatedEls = document.querySelectorAll('.scroll-animate-img')
+    animatedEls.forEach((el) => observer.observe(el))
+
+    return () => {
+      animatedEls.forEach((el) => observer.unobserve(el))
+    }
+  }, [])
 
   const outreachImages = Array.from({ length: 9 }, (_, i) => ({
     src: `images/community-image-${i + 1}.jpeg`,
@@ -64,7 +89,8 @@ export default function Gallery() {
                 <div
                   key={idx}
                   onClick={() => openLightbox(img.src, img.alt)}
-                  className="group relative overflow-hidden rounded-2xl aspect-square bg-slate-100 border border-slate-200/50 shadow-sm hover:shadow-xl transition-all duration-350 cursor-pointer"
+                  className="group relative overflow-hidden rounded-2xl aspect-square bg-slate-100 border border-slate-200/50 shadow-sm hover:shadow-xl transition-all duration-350 cursor-pointer scroll-animate-img animate-profile-entry"
+                  style={{ transitionDelay: `${(idx % 3) * 100}ms` }}
                 >
                   <img
                     src={img.src}
@@ -72,7 +98,7 @@ export default function Gallery() {
                     className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   {/* Premium overlay with subtle gradients */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-teal-950/90 via-slate-950/45 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                  <div className="hidden sm:flex absolute inset-0 bg-gradient-to-t from-teal-950/90 via-slate-950/45 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-col justify-end p-6">
                     <span className="text-teal-400 text-xs font-semibold uppercase tracking-wider mb-1 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-350 delay-75">
                       {img.tag}
                     </span>
@@ -106,7 +132,8 @@ export default function Gallery() {
                 <div
                   key={idx}
                   onClick={() => openLightbox(img.src, img.alt)}
-                  className="group relative overflow-hidden rounded-2xl aspect-square bg-slate-100 border border-slate-200/50 shadow-sm hover:shadow-xl transition-all duration-350 cursor-pointer"
+                  className="group relative overflow-hidden rounded-2xl aspect-square bg-slate-100 border border-slate-200/50 shadow-sm hover:shadow-xl transition-all duration-350 cursor-pointer scroll-animate-img animate-profile-entry"
+                  style={{ transitionDelay: `${(idx % 3) * 100}ms` }}
                 >
                   <img
                     src={img.src}
@@ -114,7 +141,7 @@ export default function Gallery() {
                     className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   {/* Premium overlay with subtle gradients */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-slate-950/45 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                  <div className="hidden sm:flex absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-slate-950/45 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-col justify-end p-6">
                     <span className="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-1 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-350 delay-75">
                       {img.tag}
                     </span>
