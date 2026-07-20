@@ -29,7 +29,7 @@ export default function Home({ navigateTo }) {
   return (
     <>
       {/* ================= HERO ================= */}
-      <section id="home" className="relative overflow-hidden bg-slate-50">
+      <section id="home" className="relative overflow-x-hidden bg-slate-50">
         {/* Background Decorations */}
         <div className="absolute top-20 -left-24 h-72 w-72 rounded-full bg-teal-100 blur-3xl opacity-60"></div>
         <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-cyan-100 blur-3xl opacity-50"></div>
@@ -49,15 +49,15 @@ export default function Home({ navigateTo }) {
               </h1>
 
               {/* Mobile Profile Image — after RN, BSN, before text */}
-              <div className="relative mt-8 flex flex-col items-center justify-center px-2 py-10 lg:hidden">
-                <div className="relative flex justify-center">
-                  <div className="absolute h-[320px] w-[320px] rounded-full bg-teal-100"></div>
+              <div className="relative mt-8 flex flex-col items-center justify-center overflow-visible px-2 py-10 lg:hidden">
+                <div className="relative flex w-full max-w-[340px] justify-center overflow-visible">
+                  <div className="absolute aspect-square w-[min(300px,80vw)] rounded-full bg-teal-100"></div>
 
-                  <div className="relative z-10 h-[325px] w-[320px] overflow-hidden rounded-full border-4 border-white shadow-2xl animate-profile-entry">
+                  <div className="relative z-10 aspect-square w-[min(300px,80vw)] overflow-hidden rounded-full border-4 border-white shadow-2xl animate-profile-entry">
                     <img
-                      src="images/profile-image.jpeg"
+                      src="/images/profile-image.jpeg"
                       alt="Fatima Gibba"
-                      className="h-full w-full object-cover object-[center_20%] animate-profile-shake"
+                      className="h-full w-full object-cover object-top animate-profile-shake"
                     />
                   </div>
 
@@ -134,7 +134,7 @@ export default function Home({ navigateTo }) {
                 {/* Main Image */}
                 <div className="relative z-10 h-[385px] w-[380px] overflow-hidden rounded-full border-4 border-white shadow-2xl animate-profile-entry md:h-[435px] md:w-[430px]">
                   <img
-                    src="images/profile-image.jpeg"
+                    src="/images/profile-image.jpeg"
                     alt="Fatima Gibba"
                     className="h-full w-full object-cover object-top animate-profile-shake"
                   />
@@ -177,39 +177,25 @@ export default function Home({ navigateTo }) {
           <div className="grid items-center gap-16 lg:grid-cols-2">
             {/* LEFT IMAGE */}
             <div className="relative flex flex-col items-center justify-center">
-              <div className="relative flex justify-center">
+              <div className="relative flex justify-center overflow-visible">
                 <div className="absolute -left-10 top-10 h-72 w-72 rounded-full bg-teal-100 blur-3xl opacity-60"></div>
                 <div className="relative z-10 w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] md:w-[420px] md:h-[420px] rounded-[50px] overflow-hidden shadow-2xl border-4 border-white scroll-animate-img">
                   <img
-                    src="images/home-image.jpeg"
+                    src="/images/home-image.jpeg"
                     alt="Fatima Gibba nursing"
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
 
-                {/* Experience Card (Desktop/Tablet) */}
-                <div className="hidden sm:block absolute -bottom-8 -right-5 z-20 rounded-2xl bg-white p-6 shadow-xl">
-                  <div className="flex items-center gap-4">
-                    <div className="rounded-full bg-teal-100 p-4">
-                      <i className="ri-user-heart-line text-3xl text-teal-700"></i>
+                <div className="absolute bottom-0 -right-2 sm:-right-5 z-20 rounded-2xl bg-white p-4 sm:p-6 shadow-xl">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <div className="rounded-full bg-teal-100 p-2.5 sm:p-4">
+                      <i className="ri-user-heart-line text-xl sm:text-3xl text-teal-700"></i>
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-slate-900">Patient First</h4>
-                      <p className="text-sm text-slate-500">Compassionate Care</p>
+                      <h4 className="text-sm sm:text-xl font-bold text-slate-900">Patient First</h4>
+                      <p className="text-xs sm:text-sm text-slate-500">Compassionate Care</p>
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Experience Card (Mobile) */}
-              <div className="mt-8 flex sm:hidden w-full max-w-[300px] z-20 rounded-2xl bg-white p-4 shadow-lg border border-slate-100">
-                <div className="flex items-center gap-4">
-                  <div className="rounded-full bg-teal-100 p-2.5">
-                    <i className="ri-user-heart-line text-xl text-teal-700"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm text-slate-900">Patient First</h4>
-                    <p className="text-xs text-slate-500">Compassionate Care</p>
                   </div>
                 </div>
               </div>
