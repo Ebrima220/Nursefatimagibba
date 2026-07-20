@@ -49,22 +49,22 @@ export default function Home({ navigateTo }) {
               </h1>
 
               {/* Mobile Profile Image — after RN, BSN, before text */}
-              <div className="relative mt-8 flex flex-col items-center justify-center lg:hidden">
+              <div className="relative mt-8 flex flex-col items-center justify-center px-2 py-10 lg:hidden">
                 <div className="relative flex justify-center">
-                  <div className="absolute h-[220px] w-[220px] rounded-full bg-teal-100"></div>
+                  <div className="absolute h-[320px] w-[320px] rounded-full bg-teal-100"></div>
 
-                  <div className="relative z-10 h-[225px] w-[220px] overflow-hidden rounded-full border-4 border-white shadow-2xl animate-profile-entry">
+                  <div className="relative z-10 h-[325px] w-[320px] overflow-hidden rounded-full border-4 border-white shadow-2xl animate-profile-entry">
                     <img
                       src="images/profile-image.jpeg"
                       alt="Fatima Gibba"
-                      className="h-full w-full object-cover object-top animate-profile-shake"
+                      className="h-full w-full object-cover object-[center_20%] animate-profile-shake"
                     />
                   </div>
 
-                  <div className="absolute -left-1 bottom-4 z-20 max-w-[140px] rounded-xl bg-white p-3 shadow-xl">
-                    <div className="flex items-center gap-2">
+                  <div className="absolute -left-4 top-10 z-20 max-w-[150px] rounded-2xl bg-white p-3 shadow-xl">
+                    <div className="flex items-center gap-2.5">
                       <div className="rounded-full bg-teal-100 p-2">
-                        <i className="ri-award-line text-base text-teal-700 animate-pulse"></i>
+                        <i className="ri-award-line text-lg text-teal-700 animate-pulse"></i>
                       </div>
                       <div>
                         <h4 className="text-xs font-semibold text-slate-900">Registered Nurse</h4>
@@ -73,10 +73,10 @@ export default function Home({ navigateTo }) {
                     </div>
                   </div>
 
-                  <div className="absolute -bottom-2 -right-2 z-20 max-w-[155px] rounded-xl bg-white p-3 shadow-xl">
-                    <div className="flex items-center gap-2">
+                  <div className="absolute -bottom-6 right-0 z-20 max-w-[165px] rounded-2xl bg-white p-3 shadow-xl">
+                    <div className="flex items-center gap-2.5">
                       <div className="rounded-full bg-cyan-100 p-2">
-                        <i className="ri-hospital-line text-base text-teal-700"></i>
+                        <i className="ri-hospital-line text-lg text-teal-700"></i>
                       </div>
                       <div>
                         <h4 className="text-xs font-semibold text-slate-900">Clinical Training</h4>
