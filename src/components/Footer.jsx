@@ -42,7 +42,7 @@ export default function Footer({ navigateTo }) {
             <h4 className="text-white font-semibold text-base uppercase tracking-wider mb-4">Connect</h4>
             <div className="flex gap-4">
               <a
-                href="https://wa.me/15552345678"
+                href="https://wa.me/2206734922"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="h-10 w-10 flex items-center justify-center rounded-full bg-slate-800 text-slate-400 hover:bg-teal-700 hover:text-white transition"
@@ -60,7 +60,7 @@ export default function Footer({ navigateTo }) {
                 <i className="ri-linkedin-fill text-lg"></i>
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/pha__gibba?igsh=MXYxc290cG14YnQydw=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="h-10 w-10 flex items-center justify-center rounded-full bg-slate-800 text-slate-400 hover:bg-teal-700 hover:text-white transition"

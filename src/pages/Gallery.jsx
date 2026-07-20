@@ -5,13 +5,13 @@ export default function Gallery() {
 
   const outreachImages = Array.from({ length: 9 }, (_, i) => ({
     src: `images/community-image-${i + 1}.jpeg`,
-    alt: `Community Outreach - Activity ${i + 1}`,
+    alt: 'Community Outreach',
     tag: 'Community Outreach'
   }))
 
   const clinicalImages = Array.from({ length: 9 }, (_, i) => ({
     src: `images/ward-and-school-image-${i + 1}.jpeg`,
-    alt: `Clinical Practice & School Milestone ${i + 1}`,
+    alt: 'Clinical Practice & School Days',
     tag: 'Ward & School Days'
   }))
 

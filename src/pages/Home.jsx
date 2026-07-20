@@ -427,7 +427,7 @@ export default function Home({ navigateTo }) {
               <div className="mt-8 space-y-8">
                 <div className="border-l-4 border-teal-600 pl-6">
                   <h4 className="text-xl font-bold text-slate-900">Bachelor of Science in Nursing (BSN)</h4>
-                  <p className="mt-2 font-medium text-teal-700">University of Health Sciences</p>
+                  <p className="mt-2 font-medium text-teal-700">University of The Gambia</p>
                   <p className="mt-2 text-sm text-slate-500">2022 - 2026</p>
                   <p className="mt-4 leading-7 text-slate-600">
                     Completed comprehensive nursing education focused on clinical practice, patient safety, healthcare
