@@ -155,7 +155,7 @@ export default function Gallery() {
                     alt={img.alt}
                     className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  {/* Premium overlay with subtle gradients */}
+                  {/* Hover overlay */}
                   <div className="hidden sm:flex absolute inset-0 bg-gradient-to-t from-teal-950/90 via-slate-950/45 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-col justify-end p-6">
                     <span className="text-teal-400 text-xs font-semibold uppercase tracking-wider mb-1 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-350 delay-75">
                       {img.tag}
@@ -198,17 +198,8 @@ export default function Gallery() {
                     alt={img.alt}
                     className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  {/* Premium overlay with subtle gradients */}
+                  {/* Hover overlay */}
                   <div className="hidden sm:flex absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-slate-950/45 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-col justify-end p-6">
-feat(gallery): revamp hero slideshow with Ken Burns zoom, parallax scroll, and curated images
-
-- Limit hero background to 4 hand-picked images (community-1, community-9, ward-2, community-5)
-- Switch to object-cover + object-top for full-width display with faces visible
-- Add scroll-based parallax effect on hero background
-- Add Ken Burns zoom animation (scale 1→1.10 over 7s) per slide
-- Speed up shuffle interval to 7s with 2s crossfade transition
-- Make hero full-screen height (min-h-screen) with vertically centered text
-- Lighten dark overlay for better image visibility
                     <span className="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-1 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-350 delay-75">
                       {img.tag}
                     </span>
