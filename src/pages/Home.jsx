@@ -23,33 +23,62 @@ export default function Home({ navigateTo }) {
     const animatedEls = document.querySelectorAll('.scroll-animate-img')
     animatedEls.forEach((el) => imgObserver.observe(el))
 
-    // Expertise cards observer — only active on small screens (< 1024px)
-    const expertiseObserver = new IntersectionObserver(
-      (entries) => {
-        if (window.innerWidth >= 1024) return
-        entries.forEach((entry) => {
-          const el = entry.target
-          if (entry.isIntersecting) {
-            el.classList.remove('card-exit')
-            el.classList.add('card-enter')
-          } else {
-            el.classList.remove('card-enter')
-            el.classList.add('card-exit')
-          }
-        })
-      },
-      {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px',
-      }
+    // ── Expertise cards: slide in/out on mobile ──────────────────────────────
+    const cards = Array.from(
+      document.querySelectorAll('[data-expertise-card]')
     )
 
-    const expertiseCards = document.querySelectorAll('.expertise-card-left, .expertise-card-right')
-    expertiseCards.forEach((el) => expertiseObserver.observe(el))
+    function updateCards() {
+      if (window.innerWidth >= 1024) {
+        // Desktop: clear all data-slide attrs, cards render normally
+        cards.forEach((el) => el.removeAttribute('data-slide'))
+        return
+      }
+
+      const vh = window.innerHeight
+
+      cards.forEach((el) => {
+        const dir = el.dataset.expertiseCard // 'left' or 'right'
+        const rect = el.getBoundingClientRect()
+        const prev = el.dataset.slide || ''
+
+        // Card is in view
+        if (rect.top < vh * 0.9 && rect.bottom > vh * 0.1) {
+          if (prev !== `${dir}-in`) {
+            el.dataset.slide = `${dir}-in`
+          }
+        } else {
+          // Card is out of view — only animate out if it was visible
+          const nextState = `${dir}-out`
+          if (prev === `${dir}-in` && prev !== nextState) {
+            el.dataset.slide = nextState
+          } else if (!prev || prev === `${dir}-out`) {
+            // Never seen yet — keep hidden without animation
+            el.dataset.slide = `${dir}-hidden`
+          }
+        }
+      })
+    }
+
+    // Set initial hidden state immediately so there's no flash
+    if (window.innerWidth < 1024) {
+      cards.forEach((el) => {
+        el.dataset.slide = `${el.dataset.expertiseCard}-hidden`
+      })
+    }
+
+    // Run once after paint to catch cards already in viewport on load
+    requestAnimationFrame(() => {
+      requestAnimationFrame(updateCards)
+    })
+
+    window.addEventListener('scroll', updateCards, { passive: true })
+    window.addEventListener('resize', updateCards, { passive: true })
 
     return () => {
       animatedEls.forEach((el) => imgObserver.unobserve(el))
-      expertiseCards.forEach((el) => expertiseObserver.unobserve(el))
+      window.removeEventListener('scroll', updateCards)
+      window.removeEventListener('resize', updateCards)
     }
   }, [])
 
@@ -308,10 +337,7 @@ export default function Home({ navigateTo }) {
           {/* Cards */}
           <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {/* Card 1 — slides from left */}
-            <div
-              className="expertise-card-left rounded-3xl bg-white p-8 shadow-sm transition-shadow duration-300 hover:-translate-y-2 hover:shadow-xl"
-              style={{ animationDelay: '0ms' }}
-            >
+            <div data-expertise-card="left" className="rounded-3xl bg-white p-8 shadow-sm transition-shadow duration-300 hover:-translate-y-2 hover:shadow-xl">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-100">
                 <i className="ri-heart-pulse-line text-3xl text-teal-700"></i>
               </div>
@@ -322,10 +348,7 @@ export default function Home({ navigateTo }) {
             </div>
 
             {/* Card 2 — slides from right */}
-            <div
-              className="expertise-card-right rounded-3xl bg-white p-8 shadow-sm transition-shadow duration-300 hover:-translate-y-2 hover:shadow-xl"
-              style={{ animationDelay: '80ms' }}
-            >
+            <div data-expertise-card="right" className="rounded-3xl bg-white p-8 shadow-sm transition-shadow duration-300 hover:-translate-y-2 hover:shadow-xl">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-100">
                 <i className="ri-first-aid-kit-line text-3xl text-teal-700"></i>
               </div>
@@ -336,10 +359,7 @@ export default function Home({ navigateTo }) {
             </div>
 
             {/* Card 3 — slides from left */}
-            <div
-              className="expertise-card-left rounded-3xl bg-white p-8 shadow-sm transition-shadow duration-300 hover:-translate-y-2 hover:shadow-xl"
-              style={{ animationDelay: '160ms' }}
-            >
+            <div data-expertise-card="left" className="rounded-3xl bg-white p-8 shadow-sm transition-shadow duration-300 hover:-translate-y-2 hover:shadow-xl">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-100">
                 <i className="ri-medicine-bottle-line text-3xl text-teal-700"></i>
               </div>
@@ -350,10 +370,7 @@ export default function Home({ navigateTo }) {
             </div>
 
             {/* Card 4 — slides from right */}
-            <div
-              className="expertise-card-right rounded-3xl bg-white p-8 shadow-sm transition-shadow duration-300 hover:-translate-y-2 hover:shadow-xl"
-              style={{ animationDelay: '240ms' }}
-            >
+            <div data-expertise-card="right" className="rounded-3xl bg-white p-8 shadow-sm transition-shadow duration-300 hover:-translate-y-2 hover:shadow-xl">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-100">
                 <i className="ri-community-line text-3xl text-teal-700"></i>
               </div>
