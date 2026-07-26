@@ -3,7 +3,8 @@ import { SITE } from '../config/site.js'
 
 export default function Home({ navigateTo }) {
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    // About image observer
+    const imgObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -20,10 +21,35 @@ export default function Home({ navigateTo }) {
     )
 
     const animatedEls = document.querySelectorAll('.scroll-animate-img')
-    animatedEls.forEach((el) => observer.observe(el))
+    animatedEls.forEach((el) => imgObserver.observe(el))
+
+    // Expertise cards observer — only active on small screens (< 1024px)
+    const expertiseObserver = new IntersectionObserver(
+      (entries) => {
+        if (window.innerWidth >= 1024) return
+        entries.forEach((entry) => {
+          const el = entry.target
+          if (entry.isIntersecting) {
+            el.classList.remove('card-exit')
+            el.classList.add('card-enter')
+          } else {
+            el.classList.remove('card-enter')
+            el.classList.add('card-exit')
+          }
+        })
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    )
+
+    const expertiseCards = document.querySelectorAll('.expertise-card-left, .expertise-card-right')
+    expertiseCards.forEach((el) => expertiseObserver.observe(el))
 
     return () => {
-      animatedEls.forEach((el) => observer.unobserve(el))
+      animatedEls.forEach((el) => imgObserver.unobserve(el))
+      expertiseCards.forEach((el) => expertiseObserver.unobserve(el))
     }
   }, [])
 
@@ -261,7 +287,7 @@ export default function Home({ navigateTo }) {
       </section>
 
       {/* ================= EXPERTISE ================= */}
-      <section id="expertise" className="bg-slate-50 py-24">
+      <section id="expertise" className="bg-slate-50 py-24 overflow-x-hidden">
         <div className="mx-auto max-w-7xl px-6">
           {/* Heading */}
           <div className="mx-auto max-w-3xl text-center">
@@ -281,8 +307,11 @@ export default function Home({ navigateTo }) {
 
           {/* Cards */}
           <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {/* Card 1 */}
-            <div className="rounded-3xl bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+            {/* Card 1 — slides from left */}
+            <div
+              className="expertise-card-left rounded-3xl bg-white p-8 shadow-sm transition-shadow duration-300 hover:-translate-y-2 hover:shadow-xl"
+              style={{ animationDelay: '0ms' }}
+            >
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-100">
                 <i className="ri-heart-pulse-line text-3xl text-teal-700"></i>
               </div>
@@ -292,8 +321,11 @@ export default function Home({ navigateTo }) {
               </p>
             </div>
 
-            {/* Card 2 */}
-            <div className="rounded-3xl bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+            {/* Card 2 — slides from right */}
+            <div
+              className="expertise-card-right rounded-3xl bg-white p-8 shadow-sm transition-shadow duration-300 hover:-translate-y-2 hover:shadow-xl"
+              style={{ animationDelay: '80ms' }}
+            >
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-100">
                 <i className="ri-first-aid-kit-line text-3xl text-teal-700"></i>
               </div>
@@ -303,8 +335,11 @@ export default function Home({ navigateTo }) {
               </p>
             </div>
 
-            {/* Card 3 */}
-            <div className="rounded-3xl bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+            {/* Card 3 — slides from left */}
+            <div
+              className="expertise-card-left rounded-3xl bg-white p-8 shadow-sm transition-shadow duration-300 hover:-translate-y-2 hover:shadow-xl"
+              style={{ animationDelay: '160ms' }}
+            >
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-100">
                 <i className="ri-medicine-bottle-line text-3xl text-teal-700"></i>
               </div>
@@ -314,8 +349,11 @@ export default function Home({ navigateTo }) {
               </p>
             </div>
 
-            {/* Card 4 */}
-            <div className="rounded-3xl bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+            {/* Card 4 — slides from right */}
+            <div
+              className="expertise-card-right rounded-3xl bg-white p-8 shadow-sm transition-shadow duration-300 hover:-translate-y-2 hover:shadow-xl"
+              style={{ animationDelay: '240ms' }}
+            >
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-100">
                 <i className="ri-community-line text-3xl text-teal-700"></i>
               </div>
@@ -509,7 +547,7 @@ export default function Home({ navigateTo }) {
                   <div className="flex items-center gap-4">
                     <i className="ri-checkbox-circle-fill text-2xl text-teal-700"></i>
                     <div>
-                      <h4 className="font-semibold text-slate-900">Registered Nurse License</h4>
+                      <h4 className="font-semibold text-slate-900">Registered Nurse License (RN)</h4>
                       <p className="text-sm text-slate-500">Active Professional License</p>
                     </div>
                   </div>
@@ -519,8 +557,8 @@ export default function Home({ navigateTo }) {
                   <div className="flex items-center gap-4">
                     <i className="ri-checkbox-circle-fill text-2xl text-teal-700"></i>
                     <div>
-                      <h4 className="font-semibold text-slate-900">Basic Life Support (BLS)</h4>
-                      <p className="text-sm text-slate-500">American Heart Association</p>
+                      <h4 className="font-semibold text-slate-900">Bachelor of Science in Nursing (BSN)</h4>
+                      <p className="text-sm text-slate-500">University of The Gambia (UTG)</p>
                     </div>
                   </div>
                 </div>
@@ -529,18 +567,8 @@ export default function Home({ navigateTo }) {
                   <div className="flex items-center gap-4">
                     <i className="ri-checkbox-circle-fill text-2xl text-teal-700"></i>
                     <div>
-                      <h4 className="font-semibold text-slate-900">Advanced Cardiac Life Support (ACLS)</h4>
-                      <p className="text-sm text-slate-500">Emergency Care Certification</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between rounded-2xl bg-slate-50 p-5">
-                  <div className="flex items-center gap-4">
-                    <i className="ri-checkbox-circle-fill text-2xl text-teal-700"></i>
-                    <div>
-                      <h4 className="font-semibold text-slate-900">Infection Prevention Training</h4>
-                      <p className="text-sm text-slate-500">Patient Safety Practice</p>
+                      <h4 className="font-semibold text-slate-900">Associate Certificate in Nursing</h4>
+                      <p className="text-sm text-slate-500">Professional Certification</p>
                     </div>
                   </div>
                 </div>
